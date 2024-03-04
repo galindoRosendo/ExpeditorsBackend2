@@ -30,10 +30,8 @@ public class RandomStudent {
             "Grant Stampfli",
       };
 
-      for(int i = 0; i < 10; i++) {
          String result = getRandomStudent(names);
          System.out.println("result: " + result);
-      }
    }
 
    public static String getRandomStudent(String [] array) {
