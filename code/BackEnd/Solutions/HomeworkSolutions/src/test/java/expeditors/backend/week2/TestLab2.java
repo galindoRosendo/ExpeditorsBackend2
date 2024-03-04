@@ -2,8 +2,6 @@ package expeditors.backend.week2;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -16,7 +14,7 @@ public class TestLab2 {
     public void testCreateArray() {
         int size = 22;
         int limit = 10000;
-        int [] result = Lab2.createArray(size, limit);
+        int [] result = Lab2Old.createArray(size, limit);
 
         //check the length
         assertEquals(size, result.length);
