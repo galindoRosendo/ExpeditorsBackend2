@@ -27,10 +27,7 @@ public class casesService {
     public static int forLoop(int start, int end){
         int counterDiv = 0;
         for (int i = start; i <= end; i++) {
-            if (i % 3 == 0){
-                counterDiv++;
-            }
-            if (i % 7 == 0){
+            if (i % 3 == 0 || i % 7 == 0){
                 counterDiv++;
             }
         }
@@ -41,10 +38,7 @@ public class casesService {
         int control = start, counterDiv = 0;
 
         while(control <= end){
-            if (control % 3 == 0){
-                counterDiv++;
-            }
-            if (control % 7 == 0){
+            if (control % 3 == 0 || control % 7 == 0){
                 counterDiv++;
             }
             control++;
