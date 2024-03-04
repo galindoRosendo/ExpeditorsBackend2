@@ -17,12 +17,12 @@ public class Lab3 {
     public static int withForLoop() {
         int count = 0;
         for (int i = -500; i <= 500; i++) {
-            if (i % 3 == 0) {
+            if (i % 3 == 0 && i % 7 == 0) {
                 count++;
             }
-            if (i % 7 == 0) {
-                count++;
-            }
+//            if (i % 7 == 0) {
+//                count++;
+//            }
         }
 
         System.out.println("Count of Numbers between -500 and +500 which are divisible by 3 and/or 7: " + count);

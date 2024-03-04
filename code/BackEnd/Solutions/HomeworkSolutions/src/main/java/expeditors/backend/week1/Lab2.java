@@ -11,18 +11,18 @@ public class Lab2 {
     Do this with a for loop and a while loop.
      */
     public static void main(String[] args) {
-//        withForLoop();
-        withWhileLoop();
+        withForLoop();
+//        withWhileLoop();
     }
 
     public static void withForLoop() {
         for (int i = -500; i <= 500; i++) {
-            if (i % 3 == 0) {
+            if (i % 3 == 0 && i % 7 == 0) {
                 System.out.println(i);
             }
-            if (i % 7 == 0) {
-                System.out.println(i);
-            }
+//            if (i % 7 == 0) {
+//                System.out.println(i);
+//            }
         }
     }
 
