@@ -8,7 +8,7 @@ public class StudentApp {
    public static void main(String[] args) {
       Student s = new Student(10, "Charlene",
             LocalDate.of(2000, 10, 7),
-            "blah");
+            "a@b.com");
 //      s.setId(10);
 ////      s.setName("Franky");
 //      s.setDob(LocalDate.of(2000, 10, 7));
