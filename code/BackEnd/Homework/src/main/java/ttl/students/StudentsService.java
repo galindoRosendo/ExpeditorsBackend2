@@ -1,11 +1,10 @@
 package ttl.students;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class studentsService {
+public class StudentsService {
     static String[] studentsArray = new String[] {
             "Alan Morales Rueda",
             "Andre Uys",
@@ -43,9 +42,9 @@ public class studentsService {
         }
         return intsArray[5];
     }
-    public static Integer[] CreateArray(Integer size, Integer limit) {
+    public static Integer[] createArray(Integer size, Integer limit) {
         Integer[] intArray = new Integer[size];
-        for (int i = 0; i < limit; i++) {
+        for (int i = 0; i < size; i++) {
             intArray[i] = ThreadLocalRandom.current().nextInt(limit);
         }
         return intArray;
