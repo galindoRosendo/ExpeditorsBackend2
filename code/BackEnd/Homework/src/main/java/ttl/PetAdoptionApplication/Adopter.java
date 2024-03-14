@@ -6,14 +6,20 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Adopter {
+    public Adopter(Integer id, String name, String phone, Pet pet){
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.pet = pet;
+    }
+    public Adopter(){
+
+    }
     //region Variables
     private Integer id;
     private String name;
     private String phone;
-    private LocalDate dateOfAdoption;
-    private TypesOfPets.enumTypesOfPets typeOfPetAdopted;
-    private String nameOfPetAdopted;
-    private String breedOfPetAdopted;
+    private Pet pet;
     //endregion
     //region Getters & Setters
     public Integer getId() {
@@ -39,37 +45,12 @@ public class Adopter {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
-    public LocalDate getDateOfAdoption() {
-        return dateOfAdoption;
+    public Pet getPet() {
+        return pet;
     }
 
-    public void setDateOfAdoption(LocalDate dateOfAdoption) {
-        this.dateOfAdoption = dateOfAdoption;
-    }
-
-    public TypesOfPets.enumTypesOfPets getTypeOfPetAdopted() {
-        return typeOfPetAdopted;
-    }
-
-    public void setTypeOfPetAdopted(TypesOfPets.enumTypesOfPets typeOfPetAdopted) {
-        this.typeOfPetAdopted = typeOfPetAdopted;
-    }
-
-    public String getNameOfPetAdopted() {
-        return nameOfPetAdopted;
-    }
-
-    public void setNameOfPetAdopted(String nameOfPetAdopted) {
-        this.nameOfPetAdopted = nameOfPetAdopted;
-    }
-
-    public String getBreedOfPetAdopted() {
-        return breedOfPetAdopted;
-    }
-
-    public void setBreedOfPetAdopted(String breedOfPetAdopted) {
-        this.breedOfPetAdopted = breedOfPetAdopted;
+    public void setPet(Pet pet) {
+        this.pet = pet;
     }
     //endregion
 }

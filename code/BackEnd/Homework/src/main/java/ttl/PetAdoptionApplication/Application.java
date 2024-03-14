@@ -3,13 +3,19 @@ package ttl.PetAdoptionApplication;
 import ttl.PetAdoptionApplication.enums.TypesOfPets;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) {
-        Adopter adopter1 = captureAdopterData();
-        Adopter adopter2 = captureAdopterData();
+        ArrayList<Adopter> adopters = new ArrayList<Adopter>();
+
+        Pet nina = new Pet(LocalDate.now(), TypesOfPets.enumTypesOfPets.Cat, "nina", "Aria");
+        Pet noha = new Pet(LocalDate.now(), TypesOfPets.enumTypesOfPets.Dog, "noha", "Rotweiler & Chow chow");
+        Adopter adopter1 = new Adopter(1, "Rosendo", "8671413415", noha);
+        Adopter adopter2 = new Adopter(1, "Deyanira", "8672455575", nina);
+
+
         PrintAdopterData(adopter1);
         PrintAdopterData(adopter2);
     }
@@ -33,20 +39,20 @@ public class Application {
                         adopter.setPhone(reader.nextLine());
                         break;
                     case 3:
-                        System.out.println(STR."The adopter dateOfAdoption is \{LocalDate.now()}");
-                        adopter.setDateOfAdoption(LocalDate.now());
+                        System.out.println(STR."The pet's dateOfAdoption is \{LocalDate.now()}");
+
                         break;
                     case 4:
                         System.out.println("Type adopter typeOfPetAdopted");
-                        adopter.setTypeOfPetAdopted(TypesOfPets.enumTypesOfPets.valueOf(reader.nextLine()));
+
                         break;
                     case 5:
                         System.out.println("Type adopter nameOfPetAdopted");
-                        adopter.setNameOfPetAdopted(reader.nextLine());
+
                         break;
                     case 6:
                         System.out.println("Type adopter breed");
-                        adopter.setBreedOfPetAdopted(reader.nextLine());
+
                         break;
                 }
             }
@@ -61,9 +67,9 @@ public class Application {
         System.out.println(STR."The id is: \{adopterCaptured.getId()}");
         System.out.println(STR."The name is: \{adopterCaptured.getName()}");
         System.out.println(STR."The phone  is: \{adopterCaptured.getPhone()}");
-        System.out.println(STR."The date of adoption is: \{adopterCaptured.getDateOfAdoption()}");
-        System.out.println(STR."The type of adopted pet is: \{adopterCaptured.getTypeOfPetAdopted()}");
-        System.out.println(STR."The name of adopted pet is: \{adopterCaptured.getNameOfPetAdopted()}");
-        System.out.println(STR."The breed of adopted pet is: \{adopterCaptured.getBreedOfPetAdopted()}");
+        System.out.println(STR."The date of adoption is: \{adopterCaptured.getPet().getDateOfAdoption()}");
+        System.out.println(STR."The type of adopted pet is: \{adopterCaptured.getPet().getTypeOfPet()}");
+        System.out.println(STR."The name of adopted pet is: \{adopterCaptured.getPet().getName()}");
+        System.out.println(STR."The breed of adopted pet is: \{adopterCaptured.getPet().getBreed()}");
     }
 }
