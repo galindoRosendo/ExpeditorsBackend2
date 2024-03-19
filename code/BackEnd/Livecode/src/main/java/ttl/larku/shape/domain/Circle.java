@@ -13,6 +13,8 @@ public class Circle extends Shape {
    }
 
    public Circle(int radius, int x1, int y1, String color, boolean isDraggable, int lineThickness) {
+      super(x1, y1, color, isDraggable, lineThickness);
+
       this.radius = radius;
    }
 

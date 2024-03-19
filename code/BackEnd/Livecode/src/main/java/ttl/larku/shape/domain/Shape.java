@@ -1,13 +1,18 @@
 package ttl.larku.shape.domain;
 
-public class Shape {
+abstract public class Shape extends Object {
    private String color;
    private boolean isDraggable;
    private int lineThickness;
    private int x1, y1;
 
-//   public Shape() {}
-
+   public Shape(int x1, int y1, String color, boolean isDraggable, int lineThickness) {
+      this.x1 = x1;
+      this.y1 = y1;
+      this.color = color;
+      this.isDraggable = isDraggable;
+      this.lineThickness = lineThickness;
+   }
 
    public int getX1() {
       return x1;
@@ -49,11 +54,5 @@ public class Shape {
       this.lineThickness = lineThickness;
    }
 
-//   public Shape(int x1, int y1, String color, boolean isDraggable, int lineThickness) {
-//      this.x1 = x1;
-//      this.y1 = y1;
-//      this.color = color;
-//      this.isDraggable = isDraggable;
-//      this.lineThickness = lineThickness;
-//   }
+   abstract public void draw();
 }
