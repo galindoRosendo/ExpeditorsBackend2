@@ -3,7 +3,7 @@ package ttl.larku.shape.domain;
 //Allow a user to draw a Circle
 //Allow a user to draw a Rectangle
 
-public class Circle extends Shape {
+public class Circle extends AbstractShape {
 
    private int radius;
 
@@ -14,6 +14,7 @@ public class Circle extends Shape {
 
    public Circle(int radius, int x1, int y1, String color, boolean isDraggable, int lineThickness) {
       super(x1, y1, color, isDraggable, lineThickness);
+
       this.radius = radius;
    }
 
@@ -41,7 +42,17 @@ public class Circle extends Shape {
       return Math.PI * radius * radius;
    }
 
+   @Override
    public void draw() {
       System.out.println(STR."Circle::draw "); //with \{x1}, \{y1}, radius: \{radius}");
+   }
+
+   @Override
+   public String toString() {
+      var sstr = super.toString();
+      return "Circle{" +
+            "radius=" + radius +
+            " " + sstr +
+            '}';
    }
 }
