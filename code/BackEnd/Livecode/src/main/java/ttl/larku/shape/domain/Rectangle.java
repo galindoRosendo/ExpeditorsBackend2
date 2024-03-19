@@ -1,6 +1,6 @@
 package ttl.larku.shape.domain;
 
-public class Rectangle extends Shape{
+public class Rectangle extends AbstractShape{
 
    private int width, height;
 
@@ -45,5 +45,14 @@ public class Rectangle extends Shape{
    @Override
    public void draw() {
       System.out.println(STR."Rectangle::draw "); //with \{x1}, \{y1}, w, h: \{width}, \{height}");
+   }
+
+   @Override
+   public String toString() {
+      return "Rectangle{" +
+            "width=" + width +
+            ", height=" + height +
+            " " + super.toString() +
+            '}';
    }
 }
