@@ -8,13 +8,6 @@ public class Shape {
 
 //   public Shape() {}
 
-   public Shape(int x1, int y1, String color, boolean isDraggable, int lineThickness) {
-      this.x1 = x1;
-      this.y1 = y1;
-      this.color = color;
-      this.isDraggable = isDraggable;
-      this.lineThickness = lineThickness;
-   }
 
    public int getX1() {
       return x1;
@@ -55,4 +48,12 @@ public class Shape {
    public void setLineThickness(int lineThickness) {
       this.lineThickness = lineThickness;
    }
+
+//   public Shape(int x1, int y1, String color, boolean isDraggable, int lineThickness) {
+//      this.x1 = x1;
+//      this.y1 = y1;
+//      this.color = color;
+//      this.isDraggable = isDraggable;
+//      this.lineThickness = lineThickness;
+//   }
 }

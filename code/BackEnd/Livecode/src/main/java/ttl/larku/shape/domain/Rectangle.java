@@ -9,7 +9,6 @@ public class Rectangle extends Shape{
    }
 
    public Rectangle(int width, int height, int x1, int y1, String color, boolean isDraggable, int lineThickness) {
-      super(x1, y1, color, isDraggable, lineThickness);
       this.width = width;
       this.height = height;
    }
