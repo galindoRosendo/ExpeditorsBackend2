@@ -4,20 +4,25 @@ import ttl.PetAdoptionApplication.enums.TypesOfPets;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) {
-        ArrayList<Adopter> adopters = new ArrayList<Adopter>();
 
         Pet nina = new Pet(LocalDate.now(), TypesOfPets.enumTypesOfPets.Cat, "nina", "Aria");
         Pet noha = new Pet(LocalDate.now(), TypesOfPets.enumTypesOfPets.Dog, "noha", "Rotweiler & Chow chow");
         Adopter adopter1 = new Adopter(1, "Rosendo", "8671413415", noha);
         Adopter adopter2 = new Adopter(1, "Deyanira", "8672455575", nina);
 
+        List<Adopter> adopters = List.of(adopter1, adopter2);
 
+        
+
+        /*
         PrintAdopterData(adopter1);
         PrintAdopterData(adopter2);
+         */
     }
     public static Adopter captureAdopterData() {
         Adopter adopter = new Adopter();

@@ -27,6 +27,9 @@ public class Adopter {
     }
 
     public void setId(Integer id) {
+        if(id == null) {
+            id = 0;
+        }
         this.id = id;
     }
 
@@ -35,6 +38,9 @@ public class Adopter {
     }
 
     public void setName(String name) {
+        if (name == null){
+            name = "";
+        }
         this.name = name;
     }
 
@@ -43,6 +49,10 @@ public class Adopter {
     }
 
     public void setPhone(String phone) {
+        if(phone == null) {
+            phone = "";
+        }
+
         this.phone = phone;
     }
     public Pet getPet() {
