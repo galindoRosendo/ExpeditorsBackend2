@@ -2,7 +2,7 @@ package ttl.expeditors.backend.domain;
 
 import java.time.LocalDate;
 
-public class Student {
+public class Student extends Object {
 
    public enum Status {
       FULL_TIME,
@@ -17,15 +17,12 @@ public class Student {
 
    private Status status = Status.FULL_TIME;   //FULL_TIME, PART_TIME, HIBERNATING
 
+   public Student(String name, LocalDate dob, String email) {
+      this(0, name, dob, email, Status.FULL_TIME);
+   }
+
    public Student(int id, String name, LocalDate dob, String email) {
       this(id, name, dob, email, Status.FULL_TIME);
-//      init(id, name, dob, email, Status.FULL_TIME);
-//      this.id = id;
-//      this.name = name;
-//      this.dob = dob;
-//      this.setEmail(email);
-//
-//      System.out.println("In Ctor");
    }
 
    public Student(int id, String name, LocalDate dob, String email, String status) {
@@ -33,7 +30,6 @@ public class Student {
    }
 
    public Student(int id, String name, LocalDate dob, String email, Status status) {
-//      init(id, name, dob, email, status);
 
       this.id = id;
       this.name = name;
@@ -96,5 +92,16 @@ public class Student {
 
    public void setStatus(Status status) {
       this.status = status;
+   }
+
+   @Override
+   public String toString() {
+      return "Student{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", dob=" + dob +
+            ", email='" + email + '\'' +
+            ", status=" + status +
+            '}';
    }
 }
