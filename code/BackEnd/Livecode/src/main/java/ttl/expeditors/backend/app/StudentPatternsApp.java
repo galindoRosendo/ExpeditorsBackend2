@@ -2,6 +2,7 @@ package ttl.expeditors.backend.app;
 
 import java.time.LocalDate;
 import java.util.List;
+import ttl.expeditors.backend.dao.DAOFactory;
 import ttl.expeditors.backend.domain.Student;
 import ttl.expeditors.backend.service.StudentService;
 
@@ -17,7 +18,8 @@ public class StudentPatternsApp {
      getAllStudents();
    }
 
-   StudentService ss = new StudentService();
+   //StudentService ss = new StudentService();
+   StudentService ss = DAOFactory.studentService();
    public void postAStudent() {
       Student student = new Student("Bulbul", LocalDate.of(1934, 10, 10), "a@b.com");
 
