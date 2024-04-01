@@ -1,7 +1,7 @@
 package ttl.expeditors.backend.service;
 
+import java.util.ArrayList;
 import java.util.List;
-import ttl.expeditors.backend.dao.DAOFactory;
 import ttl.expeditors.backend.dao.StudentDAO;
 import ttl.expeditors.backend.domain.Student;
 
@@ -13,6 +13,8 @@ import ttl.expeditors.backend.domain.Student;
  */
 public class StudentService {
 
+   List<String> list = new ArrayList<>();
+
    private StudentDAO studentDAO;
 //   private InMemoryStudentDAO studentDAO;
 //   private JPAStudentDAO studentDAO;
@@ -20,7 +22,12 @@ public class StudentService {
    public StudentService() {
 //      studentDAO = new InMemoryStudentDAO();
 //      studentDAO = new JPAStudentDAO();
-      studentDAO = DAOFactory.studentDAO();
+      //studentDAO = DAOFactory.studentDAO();
+      int stop = 0;
+   }
+
+   public Student blah(int i) {
+     return null;
    }
 
    public Student addStudent(Student student) {
