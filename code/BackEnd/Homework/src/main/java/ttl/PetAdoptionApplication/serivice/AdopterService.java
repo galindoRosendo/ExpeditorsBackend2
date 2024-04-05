@@ -1,12 +1,16 @@
 package ttl.PetAdoptionApplication.serivice;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ttl.PetAdoptionApplication.Adopter;
 import ttl.PetAdoptionApplication.dao.AdopterDAO;
 import ttl.PetAdoptionApplication.dao.DAOFactory;
 
 import java.util.List;
 
+@Service
 public class AdopterService {
+    @Autowired
     private AdopterDAO adopterDAO;
 
     public AdopterService(){
