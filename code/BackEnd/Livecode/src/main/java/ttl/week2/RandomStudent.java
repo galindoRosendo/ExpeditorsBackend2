@@ -32,6 +32,7 @@ public class RandomStudent {
 
       System.out.print("And the Winner is ");
       for(int i = 0; i < 3; i++) {
+         getRandomStudent(names);
          System.out.print(".");
          sleep(500);
       }

@@ -1,23 +1,34 @@
 package ttl.larku.service;
 
+import jakarta.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.List;
 import ttl.larku.domain.ScheduledClass;
 import ttl.larku.domain.Student;
 
-import java.util.ArrayList;
-import java.util.List;
-
-//TODO - Need to make this into a bean
+//@Service
 public class RegistrationService {
 
-    //TODO - something required here
+//    @Autowired
     private CourseService courseService;
+//    @Autowired
     private StudentService studentService;
+//    @Autowired
     private ClassService classService;
 
-    public RegistrationService() {
-        courseService = new CourseService();
-        studentService = new StudentService();
-        classService = new ClassService();
+    public RegistrationService(CourseService courseService,
+                               StudentService studentService,
+                               ClassService classService) {
+        this.courseService = courseService;
+        this.studentService = studentService;
+        this.classService = classService;
+
+    }
+
+    @PostConstruct
+    public void init() {
+        int count = studentService.getAllStudents().size();
+        System.out.println("count: " + count);
     }
 
 
