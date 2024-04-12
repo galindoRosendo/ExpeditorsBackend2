@@ -8,9 +8,9 @@
 		http://www.springframework.org/schema/context 
 		http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="inMemoryStudentDAO" class="ttl.expeditors.backend.dao.inmemory.InMemoryStudentDAO"/>
+    <bean id="inMemoryStudentDAO" class="expeditors.backend.dao.inmemory.InMemoryStudentDAO"/>
 
-    <bean id="studentService" class="ttl.expeditors.backend.service.StudentService" >
+    <bean id="studentService" class="expeditors.backend.service.StudentService" >
         <property name="studentDAO" ref="inMemoryStudentDAO"/>
     </bean>
 

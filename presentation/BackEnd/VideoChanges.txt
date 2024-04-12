@@ -13,7 +13,7 @@ Week 7 - Spring Boot 3: The Big Picture - https://app.pluralsight.com/library/co
          Spring Boot 3 Fundamentals - https://app.pluralsight.com/library/courses/spring-boot-3-fundamentals
 
 Week 8 - Unit testing in Spring Framework 6 with JUnit - https://app.pluralsight.com/library/courses/spring-framework-6-unit-testing-junit
-	     Validating Data Input in Spring 6 Web Applicaiton - https://app.pluralsight.com/library/courses/spring-6-validating-data-input-web-applications
+	     Validating Data Input in Spring 6 Web Application - https://app.pluralsight.com/library/courses/spring-6-validating-data-input-web-applications
    
 
 Week 10 - SQL: Creating Tables, Selecting, Inserting, and Deleting Data (Interactive) - https://app.pluralsight.com/library/courses/sql-tables-selecting-inserting-deleting-data/table-of-contents
