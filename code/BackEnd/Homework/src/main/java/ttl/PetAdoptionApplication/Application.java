@@ -1,6 +1,9 @@
 package ttl.PetAdoptionApplication;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import ttl.PetAdoptionApplication.enums.TypesOfPets;
+import ttl.PetAdoptionApplication.jconfig.AdopterAppConfig;
+import ttl.PetAdoptionApplication.serivice.AdopterService;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,6 +13,12 @@ import java.util.Scanner;
 public class Application {
     public static void main(String[] args) {
 
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        context.getEnvironment().setActiveProfiles("dev");
+        context.register(AdopterAppConfig.class);
+        context.refresh();
+        AdopterService adopterService = context.getBean("adopterService", AdopterService.class);
+
         Pet nina = new Pet(LocalDate.now(), TypesOfPets.enumTypesOfPets.Cat, "nina", "Aria");
         Pet noha = new Pet(LocalDate.now(), TypesOfPets.enumTypesOfPets.Dog, "noha", "Rotweiler & Chow chow");
         Adopter adopter1 = new Adopter(1, "Rosendo", "8671413415", noha);
@@ -17,12 +26,9 @@ public class Application {
 
         List<Adopter> adopters = List.of(adopter1, adopter2);
 
-        
-
-        /*
         PrintAdopterData(adopter1);
         PrintAdopterData(adopter2);
-         */
+
     }
     public static Adopter captureAdopterData() {
         Adopter adopter = new Adopter();
