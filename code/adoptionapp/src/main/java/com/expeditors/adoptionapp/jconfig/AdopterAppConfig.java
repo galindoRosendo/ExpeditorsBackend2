@@ -3,13 +3,13 @@ package com.expeditors.adoptionapp.jconfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import ttl.PetAdoptionApplication.dao.AdopterDAO;
-import ttl.PetAdoptionApplication.dao.inmemory.InMemoryAdopterDAO;
-import ttl.PetAdoptionApplication.serivice.AdopterService;
+import com.expeditors.adoptionapp.dao.AdopterDAO;
+import com.expeditors.adoptionapp.dao.inmemory.InMemoryAdopterDAO;
+import com.expeditors.adoptionapp.AdopterService;
 
 @Configuration
 //@ComponentScan({"ttl.expeditors.backend.service", "ttl.expeditors.backend.dao"})
-@ComponentScan({"ttl.PetAdoptionApplication"})
+@ComponentScan({"com.expeditors.adoptionapp"})
 public class AdopterAppConfig {
     @Bean
     public AdopterDAO adopterDAO(){

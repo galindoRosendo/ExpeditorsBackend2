@@ -3,13 +3,10 @@ package com.expeditors.adoptionapp;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import com.expeditors.adoptionapp.enums.TypesOfPets;
 import com.expeditors.adoptionapp.jconfig.AdopterAppConfig;
-import com.expeditors.adoptionapp.serivice.AdopterService;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
-
-import static java.lang.StringTemplate.STR;
 
 public class Application {
     public static void main(String[] args) {

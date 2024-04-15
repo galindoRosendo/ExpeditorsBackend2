@@ -1,10 +1,8 @@
-package com.expeditors.adoptionapp.serivice;
+package com.expeditors.adoptionapp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ttl.PetAdoptionApplication.Adopter;
-import ttl.PetAdoptionApplication.dao.AdopterDAO;
-import ttl.PetAdoptionApplication.dao.DAOFactory;
+import com.expeditors.adoptionapp.dao.AdopterDAO;
 
 import java.util.List;
 
@@ -12,10 +10,6 @@ import java.util.List;
 public class AdopterService {
     @Autowired
     private AdopterDAO adopterDAO;
-
-    public AdopterService(){
-        adopterDAO = DAOFactory.adopterDAO();
-    }
 
     public Adopter addAdopter(Adopter adopter) {
 
