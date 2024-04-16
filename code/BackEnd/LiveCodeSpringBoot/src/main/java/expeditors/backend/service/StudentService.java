@@ -16,27 +16,11 @@ public class StudentService {
    List<String> lstr = new ArrayList<>();
 
    private StudentDAO studentDAO;
-//   private StudentDAO studentDAO = new JPAStudentDAO();
-//   private InMemoryStudentDAO studentDAO = new InMemoryStudentDAO();
-//   private JPAStudentDAO studentDAO = new JPAStudentDAO();
 
    private int numCalls;
    private AtomicInteger betterCounter = new AtomicInteger(1);
 
-   public StudentService() {
-//      studentDAO = new JPAStudentDAO();
-//      studentDAO = new InMemoryStudentDAO();
-//      studentDAO = DAOFactory.studentDAO();
-
-      int stop = 0;
-   }
-
    public Student createStudent(Student student) {
-//      int y = numCalls++;
-      int x = betterCounter.getAndIncrement();
-      //Validate DOB
-      //Other business logic
-
       //Save the student to a Store == what kind of store?
       Student insertedStudent = studentDAO.insert(student);
 
@@ -45,7 +29,10 @@ public class StudentService {
    }
 
    public boolean deleteStudent(int id) {
-      return studentDAO.delete(id);
+      var result =  studentDAO.delete(id);
+      //Lots of code here
+
+      return result;
    }
 
    public boolean updateStudent(Student student) {

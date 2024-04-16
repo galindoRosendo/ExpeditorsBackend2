@@ -12,6 +12,7 @@ import java.lang.reflect.Modifier;
 public class BasicDiscoveryExample {
 
 	public static void main(String[] args) {
+		//args = new String[] { "ttl.larku.service.StudentService" };
 		args = new String[] { "java.util.concurrent.ConcurrentHashMap" };
 		if (args.length == 0) {
 			System.out.println("Please specify a classname");

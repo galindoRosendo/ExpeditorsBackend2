@@ -20,13 +20,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * A straight ahead Unit test.  Only Mockito, no Spring
  */
-//@ExtendWith(SpringExtension.class)
-@ExtendWith(MockitoExtension.class)
 //Can use @MockitoSettings to turn on LENIENT mode.
 //Then Mockito won't get upset with unused Mocks.
 //Probably better to leave it off and get rid of
 //unused mocks.
 //@MockitoSettings(strictness = Strictness.LENIENT)
+
+@ExtendWith(MockitoExtension.class)
 @Tag("unit")
 public class StudentServiceUnitTest {
 

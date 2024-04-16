@@ -19,6 +19,10 @@ public class Student {
    private List<String> phoneNumbers = new ArrayList<>();
    private Status status = Status.FULL_TIME;   //FULL_TIME, PART_TIME, HIBERNATING
 
+   public Student() {
+      int stop = 0;
+   }
+
    public Student(String name, LocalDate dob, String... phoneNumbers) {
       this(0, name, dob, Status.FULL_TIME, List.of(phoneNumbers));
    }
