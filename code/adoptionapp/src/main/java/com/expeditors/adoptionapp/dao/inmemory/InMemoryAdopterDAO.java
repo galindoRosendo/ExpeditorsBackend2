@@ -17,7 +17,7 @@ public class InMemoryAdopterDAO implements AdopterDAO {
     public Adopter insert(Adopter adopter) {
         int id = nextId++;
         adopter.setId(id);
-        adopter.setName("InMem: " + adopter.getName());
+        adopter.setName(adopter.getName());
 
         adopters.put(adopter.getId(), adopter);
         return adopter;
