@@ -82,6 +82,7 @@ public class AdopterControllerClientTest {
                 .uri(oneAdopterUrl, 1000)
                 .retrieve()
                 .onStatus(code -> code == HttpStatus.NOT_FOUND, (req, resp) -> {
+                    //System.out.println("Bad Status: " + resp.getStatusCode());
                 })
                 .toBodilessEntity();
 

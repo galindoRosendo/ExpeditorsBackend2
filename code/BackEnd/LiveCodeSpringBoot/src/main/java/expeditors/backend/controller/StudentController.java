@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping("/student")
@@ -24,6 +23,9 @@ public class StudentController {
 
    @Autowired
    private StudentService studentService;
+
+   @Autowired
+   private UriCreator uriCreator;
 
    @GetMapping
    public List<Student> getAllStudents() {
@@ -46,11 +48,12 @@ public class StudentController {
 
       //http://localhost:8080/student/3
 
-      URI newResource = ServletUriComponentsBuilder
-            .fromCurrentRequest()
-            .path("/{id}")
-            .buildAndExpand(student.getId())
-            .toUri();
+      URI newResource = uriCreator.getURI(newStudent.getId());
+//      URI newResource = ServletUriComponentsBuilder
+//            .fromCurrentRequest()
+//            .path("/{id}")
+//            .buildAndExpand(student.getId())
+//            .toUri();
 
       //return ResponseEntity.created(newResource).body(newStudent);
       return ResponseEntity.created(newResource).build();

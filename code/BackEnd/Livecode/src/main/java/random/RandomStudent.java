@@ -14,22 +14,21 @@ public class RandomStudent {
             "Audomaro Gonzalez",
             "Chris Valencia",
             "Daniel Lee",
-
             "Humberto Rojas",
+
             "Javier Mendoza",
             "Caio Henrique",
             "Joao Alonso",
             "Mariana Duarte",
+            "Nathaniel Schieber",
+            "Dylan McClain",
 
             "Luis Barraza Hernandez",
             "Miguel Angel Rodriguez",
             "Rosendo Galindo",
             "Sean Jaw",
             "Tiffany Yee",
-
             "Vincent Vu",
-            "Nathaniel Schieber",
-            "Dylan McClain",
             "Grant Stampfli",
       };
 
