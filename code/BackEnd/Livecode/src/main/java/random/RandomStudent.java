@@ -12,18 +12,21 @@ public class RandomStudent {
             "Alan Morales Rueda",
             "Andre Uys",
             "Audomaro Gonzalez",
-            "Caio Henrique",
             "Chris Valencia",
             "Daniel Lee",
+
             "Humberto Rojas",
             "Javier Mendoza",
+            "Caio Henrique",
             "Joao Alonso",
-            "Luis Barraza Hernandez",
             "Mariana Duarte",
+
+            "Luis Barraza Hernandez",
             "Miguel Angel Rodriguez",
             "Rosendo Galindo",
             "Sean Jaw",
             "Tiffany Yee",
+
             "Vincent Vu",
             "Nathaniel Schieber",
             "Dylan McClain",
