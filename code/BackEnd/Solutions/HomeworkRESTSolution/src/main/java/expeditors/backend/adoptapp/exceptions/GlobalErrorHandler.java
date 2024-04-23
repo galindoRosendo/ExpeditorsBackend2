@@ -174,7 +174,6 @@ public class GlobalErrorHandler {
     }
 
     @ExceptionHandler(value = {Exception.class})
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     protected RestResultWrapper<?> lastPortOfCall(Exception ex, WebRequest request) {
 
 //        var pd = ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR,

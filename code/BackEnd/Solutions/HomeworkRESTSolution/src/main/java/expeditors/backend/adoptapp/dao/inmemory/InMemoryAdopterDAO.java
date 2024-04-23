@@ -39,6 +39,6 @@ public class InMemoryAdopterDAO implements AdopterDAO {
     }
 
     public List<Adopter> findAll() {
-        return new ArrayList<>(adopters.values());
+        return new ArrayList(adopters.values());
     }
 }
