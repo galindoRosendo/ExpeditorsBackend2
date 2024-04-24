@@ -2,18 +2,22 @@ package expeditors.backend.service;
 
 import expeditors.backend.dao.BaseDAO;
 import expeditors.backend.domain.Course;
+import expeditors.backend.rating.RatingProvider;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
-public class CourseService {
+public class CourseServiceWithRating {
 
     @Autowired
     private BaseDAO<Course> courseDAO;
 
-    public CourseService() {
+    @Autowired
+    private RatingProvider ratingProvider;
+
+    public CourseServiceWithRating() {
         int stop = 0;
     }
 
@@ -56,12 +60,22 @@ public class CourseService {
 
     public Course getCourse(int id) {
         var course = courseDAO.findById(id);
+        ratingProvider.addRatingToCourse(course);
 
         return course;
     }
 
     public List<Course> getAllCourses() {
-        return courseDAO.findAll();
+        List<Course> allCourses = courseDAO.findAll();
+
+//        List<Course> withRating = allCourses.stream()
+//              .peek(c -> {
+//                  ratingProvider.addRatingToCourse(c);
+//              }).toList();
+
+        allCourses.forEach(ratingProvider::addRatingToCourse);
+
+        return allCourses;
     }
 
     public BaseDAO<Course> getCourseDAO() {
@@ -71,6 +85,5 @@ public class CourseService {
     public void setCourseDAO(BaseDAO<Course> courseDAO) {
         this.courseDAO = courseDAO;
     }
-
 
 }
