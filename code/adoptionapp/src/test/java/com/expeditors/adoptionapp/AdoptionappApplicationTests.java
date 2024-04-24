@@ -1,6 +1,9 @@
 package com.expeditors.adoptionapp;
 
+import com.expeditors.adoptionapp.domain.Adopter;
+import com.expeditors.adoptionapp.domain.Pet;
 import com.expeditors.adoptionapp.enums.TypesOfPets;
+import com.expeditors.adoptionapp.service.AdopterService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

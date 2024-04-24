@@ -5,7 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import com.expeditors.adoptionapp.dao.AdopterDAO;
 import com.expeditors.adoptionapp.dao.inmemory.InMemoryAdopterDAO;
-import com.expeditors.adoptionapp.AdopterService;
+import com.expeditors.adoptionapp.service.AdopterService;
 
 @Configuration
 //@ComponentScan({"ttl.expeditors.backend.service", "ttl.expeditors.backend.dao"})

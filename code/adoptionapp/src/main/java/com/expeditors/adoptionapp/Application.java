@@ -1,5 +1,8 @@
 package com.expeditors.adoptionapp;
 
+import com.expeditors.adoptionapp.domain.Adopter;
+import com.expeditors.adoptionapp.domain.Pet;
+import com.expeditors.adoptionapp.service.AdopterService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import com.expeditors.adoptionapp.enums.TypesOfPets;
 import com.expeditors.adoptionapp.jconfig.AdopterAppConfig;

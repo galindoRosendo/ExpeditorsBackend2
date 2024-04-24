@@ -1,6 +1,9 @@
 package com.expeditors.adoptionapp;
 
+import com.expeditors.adoptionapp.domain.Adopter;
+import com.expeditors.adoptionapp.domain.Pet;
 import com.expeditors.adoptionapp.enums.TypesOfPets;
+import com.expeditors.adoptionapp.service.AdopterService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

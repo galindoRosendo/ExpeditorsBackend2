@@ -1,6 +1,6 @@
 package com.expeditors.adoptionapp.dao;
 
-import com.expeditors.adoptionapp.Adopter;
+import com.expeditors.adoptionapp.domain.Adopter;
 
 import java.util.List;
 

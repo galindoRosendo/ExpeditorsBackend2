@@ -1,6 +1,6 @@
 package com.expeditors.adoptionapp.dao.inmemory;
 
-import com.expeditors.adoptionapp.Adopter;
+import com.expeditors.adoptionapp.domain.Adopter;
 import com.expeditors.adoptionapp.dao.AdopterDAO;
 
 import java.util.ArrayList;

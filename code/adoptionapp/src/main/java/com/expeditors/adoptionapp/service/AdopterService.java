@@ -1,5 +1,6 @@
-package com.expeditors.adoptionapp;
+package com.expeditors.adoptionapp.service;
 
+import com.expeditors.adoptionapp.domain.Adopter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.expeditors.adoptionapp.dao.AdopterDAO;

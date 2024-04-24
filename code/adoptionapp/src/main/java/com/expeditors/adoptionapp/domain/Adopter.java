@@ -1,4 +1,4 @@
-package com.expeditors.adoptionapp;
+package com.expeditors.adoptionapp.domain;
 
 public class Adopter {
     public Adopter(Integer id, String name, String phone, Pet pet){

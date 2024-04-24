@@ -1,4 +1,4 @@
-package com.expeditors.adoptionapp;
+package com.expeditors.adoptionapp.domain;
 
 import com.expeditors.adoptionapp.enums.TypesOfPets;
 
