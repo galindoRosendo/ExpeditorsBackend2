@@ -3,6 +3,7 @@ package expeditors.backend.controller;
 
 import expeditors.backend.domain.Student;
 import expeditors.backend.service.StudentService;
+import jakarta.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping("/student")
@@ -24,6 +24,9 @@ public class StudentController {
 
    @Autowired
    private StudentService studentService;
+
+   @Autowired
+   private UriCreator uriCreator;
 
    @GetMapping
    public List<Student> getAllStudents() {
@@ -41,20 +44,25 @@ public class StudentController {
    }
 
    @PostMapping
-   public ResponseEntity<?> addStudent(@RequestBody Student student) {
+   public ResponseEntity<?> addStudent(@RequestBody @Valid Student student) {
       Student newStudent = studentService.createStudent(student);
 
       //http://localhost:8080/student/3
 
-      URI newResource = ServletUriComponentsBuilder
-            .fromCurrentRequest()
-            .path("/{id}")
-            .buildAndExpand(student.getId())
-            .toUri();
+      URI newResource = uriCreator.getURI(newStudent.getId());
+//      URI newResource = ServletUriComponentsBuilder
+//            .fromCurrentRequest()
+//            .path("/{id}")
+//            .buildAndExpand(student.getId())
+//            .toUri();
 
       //return ResponseEntity.created(newResource).body(newStudent);
       return ResponseEntity.created(newResource).build();
    }
+
+//   public boolean validateStudent(Student student) {
+//      return (student.getDob() != null && student.getName() != null);
+//   }
 
    @DeleteMapping("/{id}")
    public ResponseEntity<?> deleteStudent(@PathVariable("id") int id) {
@@ -76,6 +84,30 @@ public class StudentController {
 
       return ResponseEntity.noContent().build();
    }
+
+//   /**
+//    * Handle validation errors for automatic validation, i.e with the @Valid annotation.
+//    * For this to be invoked, you have to have a controller argument of object type
+//    * to which you have attached the @Valid annotation.
+//    * Look at the end of StudentRestController for an example, which may be commented out
+//    * by default.
+//    * @param ex the exception thrown
+//    * @param request the incoming request
+//    * @return a bad request + restresult that contains the errors
+//    */
+//   @ExceptionHandler(value = {MethodArgumentNotValidException.class})
+//   public ResponseEntity<?> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+//                                                            WebRequest request) {
+//      var errors = ex.getFieldErrors();
+//      List<String> errMsgs = errors.stream()
+//            .map(error -> "@Valid error:" + error.getField() + ": " + error.getDefaultMessage()
+//                  + ", supplied Value: " + error.getRejectedValue())
+//            .collect(toList());
+//
+//      return ResponseEntity.badRequest().body(errMsgs);
+//
+//   }
+
 }
 
 //REpresentational State Transfer

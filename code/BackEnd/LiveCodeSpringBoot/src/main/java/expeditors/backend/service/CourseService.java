@@ -55,7 +55,9 @@ public class CourseService {
     }
 
     public Course getCourse(int id) {
-        return courseDAO.findById(id);
+        var course = courseDAO.findById(id);
+
+        return course;
     }
 
     public List<Course> getAllCourses() {
@@ -69,4 +71,6 @@ public class CourseService {
     public void setCourseDAO(BaseDAO<Course> courseDAO) {
         this.courseDAO = courseDAO;
     }
+
+
 }
