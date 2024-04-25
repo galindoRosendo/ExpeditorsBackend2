@@ -32,7 +32,7 @@ public class NetworkRatingProvider implements RatingProvider {
    public void addRatingToCourse(Course course) {
 
       ResponseEntity<Integer> response = restClient.get()
-            .uri(ratingUrl, 1)
+            .uri(ratingUrl, course.getId())
             .retrieve()
             .toEntity(Integer.class);
 

@@ -7,6 +7,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -40,7 +41,7 @@ public class StudentControllerUnitTest {
 
       Mockito.when(studentService.getStudents()).thenReturn(students);
 
-      List<Student> result = controller.getAllStudents();
+      List<Student> result = controller.getAllStudents(Map.of());
       assertEquals(2, result.size());
 
       Mockito.verify(studentService).getStudents();

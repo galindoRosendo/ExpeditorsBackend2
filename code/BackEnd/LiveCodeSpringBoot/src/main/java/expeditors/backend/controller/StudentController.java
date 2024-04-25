@@ -6,6 +6,7 @@ import expeditors.backend.service.StudentService;
 import jakarta.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -28,9 +30,20 @@ public class StudentController {
    @Autowired
    private UriCreator uriCreator;
 
+//   @GetMapping
+//   public List<Student> getAllStudents() {
+//      List<Student> students = studentService.getStudents();
+//      return students;
+//   }
+
    @GetMapping
-   public List<Student> getAllStudents() {
-      List<Student> students = studentService.getStudents();
+   public List<Student> getAllStudents(@RequestParam Map<String, String> queryStrings) {
+      List<Student> students = null;
+      if(queryStrings.isEmpty()){
+         students = studentService.getStudents();
+      }else {
+        students = studentService.getByQueryParams(queryStrings);
+      }
       return students;
    }
 
