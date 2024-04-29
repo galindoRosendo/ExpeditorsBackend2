@@ -1,6 +1,7 @@
 package expeditors.backend.rating;
 
 import expeditors.backend.domain.Course;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,13 +15,13 @@ public class NetworkRatingProvider implements RatingProvider {
    private String ratingUrl;
    private RestClient restClient;
 
-   public NetworkRatingProvider() {
+   public NetworkRatingProvider(RestTemplateBuilder restTemplateBuilder) {
       var baseUrl = "http://localhost:10001";
 
-      var rootUrl = "/rating";
+      var rootUrl = baseUrl + "/courseRating";
       ratingUrl = rootUrl + "/{id}";
 
-      this.restClient = RestClient.builder()
+      this.restClient = RestClient.builder(restTemplateBuilder.build())
             .baseUrl(baseUrl)
             .defaultHeader("Accept", "application/json")
             .defaultHeader("Content-Type", "application/json")
@@ -32,7 +33,7 @@ public class NetworkRatingProvider implements RatingProvider {
    public void addRatingToCourse(Course course) {
 
       ResponseEntity<Integer> response = restClient.get()
-            .uri(ratingUrl, 1)
+            .uri(ratingUrl, course.getId())
             .retrieve()
             .toEntity(Integer.class);
 

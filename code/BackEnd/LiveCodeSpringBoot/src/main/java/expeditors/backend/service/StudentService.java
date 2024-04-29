@@ -2,9 +2,12 @@ package expeditors.backend.service;
 
 import expeditors.backend.dao.StudentDAO;
 import expeditors.backend.domain.Student;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Predicate;
 
 /*
 StudentService should allow users to perform basic create, update, delete operations on Students to a store.
@@ -59,5 +62,38 @@ public class StudentService {
 
    public void setStudentDAO(StudentDAO studentDAO) {
       this.studentDAO = studentDAO;
+   }
+
+   public List<Student> getByQueryParams(Map<String, String> queryParams) {
+      Predicate<Student> finalPred = null;
+
+      for(var entry : queryParams.entrySet()) {
+         var key = entry.getKey();
+         var value = entry.getValue();
+
+         if(key.equals("name")) {
+            Predicate<Student> tmp = (s) -> s.getName().equals(value);
+
+            finalPred = finalPred == null ? tmp : finalPred.or(tmp);
+         }else if(key.equals("status")) {
+           var statusEnum = Student.Status.valueOf(value);
+           Predicate<Student> tmp = (s) -> s.getStatus().equals(statusEnum);
+
+            finalPred = finalPred == null ? tmp : finalPred.or(tmp);
+         }else if(key.equals("dob")) {
+            var dobDate = LocalDate.parse(value);
+            Predicate<Student> tmp = (s) -> s.getDob().equals(dobDate);
+
+            finalPred = finalPred == null ? tmp : finalPred.or(tmp);
+         }
+      }
+
+      finalPred = finalPred != null ? finalPred : (s) -> true;
+
+      List<Student> result = getStudents().stream()
+            .filter(finalPred)
+            .toList();
+
+      return result;
    }
 }
