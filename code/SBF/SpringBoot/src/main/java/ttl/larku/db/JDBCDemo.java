@@ -9,7 +9,6 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import javax.sql.DataSource;
 import ttl.larku.domain.Course;
 import ttl.larku.domain.PhoneNumber;
 import ttl.larku.domain.ScheduledClass;
@@ -30,7 +29,7 @@ public class JDBCDemo {
       String pw = "larku";
 
       try (Connection connection = DriverManager.getConnection(url, user, pw)) {
-         jdbcDemo.addDataToDB(connection);
+//         jdbcDemo.addDataToDB(connection);
 //         jdbcDemo.addStudent(connection);
 //         jdbcDemo.dumpAllStudents(connection);
 
@@ -41,11 +40,11 @@ public class JDBCDemo {
          //Example of Many to One Unidirectional
 //         jdbcDemo.addScheduledClasses(connection);
 //         jdbcDemo.dumpScheduledClasses(connection);
-//         jdbcDemo.dumpScheduledClassesWithJoin(connection);
+         jdbcDemo.dumpScheduledClassesWithJoin(connection);
 
          //Exmaple of One to Many Unidirectional
 //         jdbcDemo.addPhoneNumbers(connection);
-         jdbcDemo.dumpAllStudentsWithPhoneNumbers(connection);
+//         jdbcDemo.dumpAllStudentsWithPhoneNumbers(connection);
 
       } catch (SQLException e) {
          e.printStackTrace();
@@ -251,7 +250,7 @@ public class JDBCDemo {
 
    public void dumpScheduledClasses(Connection connection) {
       String classSql = "select * from scheduledclass";
-      String courseSql = "select * from course where course_id = ?";
+      String courseSql = "select * from course where id = ?";
 
       out.println("Running query: " + classSql);
       try (PreparedStatement statement = connection.prepareStatement(classSql);
@@ -260,7 +259,7 @@ public class JDBCDemo {
 
          List<ScheduledClass> result = new ArrayList<>();
          while (resultSet.next()) {
-            int id = resultSet.getInt("class_id");
+            int id = resultSet.getInt("id");
             LocalDate startDate = resultSet.getObject("startDate", LocalDate.class);
             LocalDate endDate = resultSet.getObject("endDate", LocalDate.class);
             int course_id_fk = resultSet.getInt("course_id");
@@ -271,7 +270,7 @@ public class JDBCDemo {
                out.println("Running query: " + courseSql + " with " + course_id_fk);
                try (ResultSet courseResultSet = courseStatement.executeQuery();) {
                   courseResultSet.next();
-                  int course_id = courseResultSet.getInt("course_id");
+                  int course_id = courseResultSet.getInt("id");
                   String code = courseResultSet.getString("code");
                   String title = courseResultSet.getString("title");
                   float credits = courseResultSet.getFloat("credits");
@@ -295,7 +294,7 @@ public class JDBCDemo {
    }
 
    public void dumpScheduledClassesWithJoin(Connection connection) {
-      String classSql = "select * from scheduledclass sc join course c on sc.course_id = c.course_id";
+      String classSql = "select * from scheduledclass sc join course c on sc.course_id = c.id";
 
       out.println("Running query: " + classSql);
       try (PreparedStatement statement = connection.prepareStatement(classSql);
@@ -304,10 +303,10 @@ public class JDBCDemo {
 
          List<ScheduledClass> result = new ArrayList<>();
          while (resultSet.next()) {
-            int id = resultSet.getInt("class_id");
+            int id = resultSet.getInt("id");
             LocalDate startDate = resultSet.getObject("startDate", LocalDate.class);
             LocalDate endDate = resultSet.getObject("endDate", LocalDate.class);
-            int course_id = resultSet.getInt("course_id");
+            int course_id = resultSet.getInt("id");
             String code = resultSet.getString("code");
             String title = resultSet.getString("title");
             float credits = resultSet.getFloat("credits");
