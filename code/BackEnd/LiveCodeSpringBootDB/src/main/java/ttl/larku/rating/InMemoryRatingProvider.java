@@ -1,4 +1,4 @@
-package ttl.larku.handler;
+package ttl.larku.rating;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 @Component
-@Profile("rating & development")
+@Profile("! networkrating")
 public class InMemoryRatingProvider implements RatingProvider {
 
    private double upperLimit = 5.0;

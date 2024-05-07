@@ -1,4 +1,4 @@
-package ttl.larku.handler;
+package ttl.larku.rating;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
 @Component
-@Profile("rating & production")
+@Profile("networkrating")
 public class RestClientRatingProvider implements RatingProvider {
 
    private RestClient restClient;
