@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @SpringBootApplication
 public class AdoptionappApplication {
@@ -30,14 +31,21 @@ class MyRunner implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("Run from comandline runner");
-		Pet nina = new Pet(LocalDate.now(), TypesOfPets.enumTypesOfPets.Cat, "nina", "Aria");
-		Pet noha = new Pet(LocalDate.now(), TypesOfPets.enumTypesOfPets.Dog, "noha", "Rotweiler & Chow chow");
-		Adopter adopter1 = new Adopter(1, "Rosendo", "8671413415", noha);
-		Adopter adopter2 = new Adopter(1, "Deyanira", "8672455575", nina);
-		adopterService.addAdopter(adopter1);
-		adopterService.addAdopter(adopter2);
+//		Pet nina = new Pet(LocalDate.now(), TypesOfPets.enumTypesOfPets.Cat, "nina", "Aria");
+//		Pet noha = new Pet(LocalDate.now(), TypesOfPets.enumTypesOfPets.Dog, "noha", "Rotweiler & Chow chow");
+//		Adopter adopter1 = new Adopter(1, "Rosendo", "8671413415", noha);
+//		Adopter adopter2 = new Adopter(2, "Deyanira", "8672455575", nina);
+//		adopterService.addAdopter(adopter1);
+//		adopterService.addAdopter(adopter2);
+//
+//		System.out.println(adopter1.getName());
+//		System.out.println(adopter2.getName());
 
-		System.out.println(adopter1.getName());
-		System.out.println(adopter2.getName());
+		Pet noha = new Pet(LocalDate.now(), TypesOfPets.enumTypesOfPets.Dog, "sue", "chihuahua");
+		Adopter adopter1 = new Adopter(5,"Adriana", "8672223344", noha);
+		adopterService.addAdopter(adopter1);
+
+		List<Adopter> adopters = adopterService.getAllAdopters();
+		Adopter adopter = adopterService.findBy(1);
 	}
 }

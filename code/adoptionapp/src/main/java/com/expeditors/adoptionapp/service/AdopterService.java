@@ -43,10 +43,6 @@ public class AdopterService {
         return adopterDAO.sortByNaturalOrder();
     }
 
-    public AdopterDAO getStudentDAO() {
-        return adopterDAO;
-    }
-
     public void setAdopterDAO(AdopterDAO adopterDAO){
         this.adopterDAO = adopterDAO;
     }

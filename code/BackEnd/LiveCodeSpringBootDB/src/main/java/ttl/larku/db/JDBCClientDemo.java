@@ -59,50 +59,50 @@ public class JDBCClientDemo {
       courses.forEach(out::println);
    }
 
-//   public void addStudentsWithPhoneNumbers(JdbcClient template) {
-//      String insertStudentSql = "insert into student (name, dob, status) values(?, ?, ?)";
-//
-//      String insertPhoneNumbersSql = "insert into phonenumber (type, number, student_id) values(?, ?, ?)";
-//      List<Integer> newStudentKeys = new ArrayList<>();
-//
-//      List<Student> students = List.of(
-//            testDataConfig.student1(),
-//            testDataConfig.student2(),
-//            testDataConfig.student3(),
-//            testDataConfig.student4()
-//      );
-//
-//      List<Object[]> studentParams = students.stream()
-//            .map(s -> new Object[]{s.getName() + "-JDBC", s.getDob(), s.getStatus().toString()})
-//            .toList();
-//
-//      List<Object[]> phoneParams = students.stream()
-//            .flatMap(s -> s.getPhoneNumbers().stream()
-//                  .map(pn -> new Object[]{pn.getType().toString(), pn.getNumber(), s.getId()}))
-//            .toList();
-//
-//      out.println("Running sql: " + insertStudentSql);
-//      var keyHolder = new GeneratedKeyHolder();
-//      for (Object[] params : studentParams) {
-//         template.sql(insertStudentSql)
-//               .params(params)
-//               .update(keyHolder);
-//
-////         out.println("Keys for new student: " + keyHolder.getKeys());
-//         newStudentKeys.add((int)keyHolder.getKeys().get("id"));
-//      }
-//
-//
-//      out.println("Running sql: " + insertPhoneNumbersSql);
-//      for (Object[] params : phoneParams) {
-//         template.sql(insertPhoneNumbersSql)
-//               .params(params)
-//               .update(keyHolder);
-//      }
-//
-//      out.println("students added : " + newStudentKeys.size());
-//      newStudentKeys.forEach(out::println);
-//   }
+   public void addStudentsWithPhoneNumbers(JdbcClient template) {
+      String insertStudentSql = "insert into student (name, dob, status) values(?, ?, ?)";
+
+      String insertPhoneNumbersSql = "insert into phonenumber (type, number, student_id) values(?, ?, ?)";
+      List<Integer> newStudentKeys = new ArrayList<>();
+
+      List<Student> students = List.of(
+            testDataConfig.student1(),
+            testDataConfig.student2(),
+            testDataConfig.student3(),
+            testDataConfig.student4()
+      );
+
+      List<Object[]> studentParams = students.stream()
+            .map(s -> new Object[]{s.getName() + "-JDBC", s.getDob(), s.getStatus().toString()})
+            .toList();
+
+      List<Object[]> phoneParams = students.stream()
+            .flatMap(s -> s.getPhoneNumbers().stream()
+                  .map(pn -> new Object[]{pn.getType().toString(), pn.getNumber(), s.getId()}))
+            .toList();
+
+      out.println("Running sql: " + insertStudentSql);
+      var keyHolder = new GeneratedKeyHolder();
+      for (Object[] params : studentParams) {
+         template.sql(insertStudentSql)
+               .params(params)
+               .update(keyHolder);
+
+//         out.println("Keys for new student: " + keyHolder.getKeys());
+         newStudentKeys.add((int)keyHolder.getKeys().get("id"));
+      }
+
+
+      out.println("Running sql: " + insertPhoneNumbersSql);
+      for (Object[] params : phoneParams) {
+         template.sql(insertPhoneNumbersSql)
+               .params(params)
+               .update(keyHolder);
+      }
+
+      out.println("students added : " + newStudentKeys.size());
+      newStudentKeys.forEach(out::println);
+   }
 //
 //   public void getWholeObjectWithRelationShipWithResultSetExtractor(JdbcClient template) {
 //      String sql = "select * from student s left join phonenumber p on s.id = p.student_id order by s.id";

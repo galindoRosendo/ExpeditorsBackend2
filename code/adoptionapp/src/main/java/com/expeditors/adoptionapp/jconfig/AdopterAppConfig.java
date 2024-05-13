@@ -1,5 +1,6 @@
 package com.expeditors.adoptionapp.jconfig;
 
+import com.expeditors.adoptionapp.dao.jpa.JPAAdotperDAO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +14,7 @@ import com.expeditors.adoptionapp.service.AdopterService;
 public class AdopterAppConfig {
     @Bean
     public AdopterDAO adopterDAO(){
-        AdopterDAO dao = new InMemoryAdopterDAO();
+        AdopterDAO dao = new JPAAdotperDAO();
         return dao;
     }
 
