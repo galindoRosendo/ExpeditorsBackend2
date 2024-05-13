@@ -406,7 +406,7 @@ public class JDBCDemo {
 
    public void registerStudentsForClasses(Connection connection) {
 
-      String inserSql = "insert into student_scheduledclass (student_id, class_id) values(?, ?)";
+      String inserSql = "insert into student_scheduledclass (student_id, classes_id) values(?, ?)";
       int rowsAffected = 0;
 
       //Student_id, class_id

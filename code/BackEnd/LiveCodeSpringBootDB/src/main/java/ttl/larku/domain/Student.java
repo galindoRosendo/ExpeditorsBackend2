@@ -5,8 +5,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-import org.springframework.validation.annotation.Validated;
-
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
@@ -30,7 +28,7 @@ public class Student {
 
     @NotNull
     @Size(min = 10, message = "Phonenumber must be at least 10 digits")
-    private String phoneNumber;
+    private List<PhoneNumber> phoneNumbers = new ArrayList<>();
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
@@ -63,7 +61,9 @@ public class Student {
         super();
         this.name = name;
         this.status = status;
-        this.phoneNumber = phoneNumber;
+        if(phoneNumber != null && !phoneNumber.isEmpty()) {
+            this.phoneNumbers.add(new PhoneNumber(phoneNumber));
+        }
         this.dob = dob;
         setClasses(classes);
     }
@@ -90,11 +90,25 @@ public class Student {
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return phoneNumbers.isEmpty() ? null : phoneNumbers.get(0).getNumber();
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        if(phoneNumber != null) {
+            if(phoneNumbers.isEmpty()) {
+                addPhoneNumber(new PhoneNumber(phoneNumber));
+            } else {
+                phoneNumbers.set(0, new PhoneNumber(phoneNumber));
+            }
+        }
+    }
+
+    public List<PhoneNumber> getPhoneNumbers() {
+        return List.copyOf(phoneNumbers);
+    }
+
+    public void addPhoneNumber(PhoneNumber phoneNumber) {
+        this.phoneNumbers.add(phoneNumber);
     }
 
     public LocalDate getDob() {
@@ -153,7 +167,7 @@ public class Student {
         return "Student{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
+                ", phoneNumbers='" + phoneNumbers + '\'' +
                 ", dob=" + dob +
                 ", status=" + status +
                 ", classes=" + classes +

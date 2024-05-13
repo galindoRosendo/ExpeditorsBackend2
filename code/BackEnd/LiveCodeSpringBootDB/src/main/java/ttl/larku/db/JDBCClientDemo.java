@@ -1,9 +1,15 @@
 package ttl.larku.db;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 import ttl.larku.domain.Course;
+import ttl.larku.domain.PhoneNumber;
+import ttl.larku.domain.Student;
 import ttl.larku.jconfig.LarkUTestDataConfig;
 
 import static java.lang.System.out;
@@ -23,15 +29,16 @@ public class JDBCClientDemo {
 
       jtd.getSimpleWithOneColumn(jdbcClient);
 //      jtd.getAllCourses(jdbcClient);
-      //jtd.addStudentsWithPhoneNumbers(jdbcClient);
+//      jtd.addStudentsWithPhoneNumbers(jdbcClient);
 //      jtd.getWholeObjectWithRelationShipWithResultSetExtractor(jdbcClient);
    }
 
    public void getSimpleWithOneColumn(JdbcClient jdbcClient) {
+//      String sql = "select code from Course where id = ?";
       String sql = "select code from Course where id = :id";
 
       String name = jdbcClient.sql(sql)
-            .param("id", 1)
+            .param("id", 1000)
             .query(String.class)
             .single();
 
@@ -59,7 +66,7 @@ public class JDBCClientDemo {
       courses.forEach(out::println);
    }
 
-   public void addStudentsWithPhoneNumbers(JdbcClient template) {
+   public void addStudentsWithPhoneNumbers(JdbcClient jdbcClient) {
       String insertStudentSql = "insert into student (name, dob, status) values(?, ?, ?)";
 
       String insertPhoneNumbersSql = "insert into phonenumber (type, number, student_id) values(?, ?, ?)";
@@ -84,7 +91,7 @@ public class JDBCClientDemo {
       out.println("Running sql: " + insertStudentSql);
       var keyHolder = new GeneratedKeyHolder();
       for (Object[] params : studentParams) {
-         template.sql(insertStudentSql)
+         jdbcClient.sql(insertStudentSql)
                .params(params)
                .update(keyHolder);
 
@@ -95,7 +102,7 @@ public class JDBCClientDemo {
 
       out.println("Running sql: " + insertPhoneNumbersSql);
       for (Object[] params : phoneParams) {
-         template.sql(insertPhoneNumbersSql)
+         jdbcClient.sql(insertPhoneNumbersSql)
                .params(params)
                .update(keyHolder);
       }
@@ -103,46 +110,46 @@ public class JDBCClientDemo {
       out.println("students added : " + newStudentKeys.size());
       newStudentKeys.forEach(out::println);
    }
-//
-//   public void getWholeObjectWithRelationShipWithResultSetExtractor(JdbcClient template) {
-//      String sql = "select * from student s left join phonenumber p on s.id = p.student_id order by s.id";
-//
-//      List<Student> result = new ArrayList<>();
-//      ResultSetExtractor<List<Student>> resultSetExtractor = (resultSet) -> {
-//         int lastStudentId = -1;
-//         Student currStudent = null;
-//
-//         while (resultSet.next()) {
-//            int id = resultSet.getInt("id");
-//            if (id != lastStudentId) {
-//               lastStudentId = id;
-//
-//               String name = resultSet.getString("name");
-//               LocalDate dob = resultSet.getObject("dob", LocalDate.class);
-//
-//
-//               Student.Status status = Student.Status.valueOf(resultSet.getString("status"));
-//
-//               currStudent = new Student(name, "", dob, status);
-//               currStudent.setId(id);
-//               result.add(currStudent);
-//            }
-//            String type = resultSet.getString("type");
-//            if (type != null) {
-//               String number = resultSet.getString("number");
-//
-//
-//               PhoneNumber pn = new PhoneNumber(PhoneNumber.Type.valueOf(type), number);
-//               currStudent.addPhoneNumber(pn);
-//            }
-//         }
-//         return result;
-//      };
-//
-//      List<Student> students = template.sql(sql)
-//            .query(resultSetExtractor);
-//
-//
-//      students.forEach(out::println);
-//   }
+
+   public void getWholeObjectWithRelationShipWithResultSetExtractor(JdbcClient jdbcClient) {
+      String sql = "select * from student s left join phonenumber p on s.id = p.student_id order by s.id";
+
+      List<Student> result = new ArrayList<>();
+      ResultSetExtractor<List<Student>> resultSetExtractor = (resultSet) -> {
+         int lastStudentId = -1;
+         Student currStudent = null;
+
+         while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            if (id != lastStudentId) {
+               lastStudentId = id;
+
+               String name = resultSet.getString("name");
+               LocalDate dob = resultSet.getObject("dob", LocalDate.class);
+
+
+               Student.Status status = Student.Status.valueOf(resultSet.getString("status"));
+
+               currStudent = new Student(name, "", dob, status);
+               currStudent.setId(id);
+               result.add(currStudent);
+            }
+            String type = resultSet.getString("type");
+            if (type != null) {
+               String number = resultSet.getString("number");
+
+
+               PhoneNumber pn = new PhoneNumber(PhoneNumber.Type.valueOf(type), number);
+               currStudent.addPhoneNumber(pn);
+            }
+         }
+         return result;
+      };
+
+      List<Student> students = jdbcClient.sql(sql)
+            .query(resultSetExtractor);
+
+
+      students.forEach(out::println);
+   }
 }

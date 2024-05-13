@@ -1,5 +1,8 @@
 package ttl.larku;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,27 +12,18 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.availability.AvailabilityChangeEvent;
-import org.springframework.boot.availability.AvailabilityState;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.event.SpringApplicationEvent;
 import org.springframework.context.ApplicationContextInitializer;
-import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.support.ServletRequestHandledEvent;
+import ttl.larku.db.InitDB;
 import ttl.larku.domain.StudentCreatedEvent;
-import ttl.larku.service.StudentService;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
 
 @EnableAsync
 @SpringBootApplication
@@ -84,6 +78,18 @@ public class SpringBootApp {
         return args -> {
             System.out.println("Bean Runner Called");
         };
+    }
+}
+
+@Component
+class DBInitializer implements CommandLineRunner
+{
+    @Autowired
+    private InitDB initDB;
+
+    @Override
+    public void run(String... args) throws Exception {
+        initDB.doIt();
     }
 }
 

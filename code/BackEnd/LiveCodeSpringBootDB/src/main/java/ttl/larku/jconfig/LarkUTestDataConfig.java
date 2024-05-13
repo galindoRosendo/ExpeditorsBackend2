@@ -59,7 +59,7 @@ public class LarkUTestDataConfig {
         return student;
     }
 
-    Course course1() {
+    public Course course1() {
         Course course = new Course();
         course.setId(1);
         course.setTitle("Intro To BasketWeaving");
@@ -69,7 +69,7 @@ public class LarkUTestDataConfig {
         return course;
     }
 
-    Course course2() {
+    public Course course2() {
         Course course = new Course();
         course.setId(2);
         course.setTitle("Yet More Botany");
@@ -79,7 +79,7 @@ public class LarkUTestDataConfig {
         return course;
     }
 
-    Course course3() {
+    public Course course3() {
         Course course = new Course();
         course.setId(3);
         course.setTitle("Intro To Math");
