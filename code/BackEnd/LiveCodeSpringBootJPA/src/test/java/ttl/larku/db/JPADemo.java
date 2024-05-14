@@ -3,6 +3,7 @@ package ttl.larku.db;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import java.time.LocalDate;
 import java.util.List;
@@ -117,6 +118,18 @@ public class JPADemo {
 
          manager.getTransaction().commit();
 
+      }
+   }
+
+   @Test
+   public void testNativeQueriesForScheduledClass() {
+      try (EntityManager manager = emf.createEntityManager();) {
+         String sql = "select sc.* from scheduledclass sc join course c on sc.course_id = c.id";
+
+         Query query = manager.createNativeQuery(sql, ScheduledClass.class);
+         List<ScheduledClass> result = query.getResultList();
+
+         out.println(result);
       }
    }
 }

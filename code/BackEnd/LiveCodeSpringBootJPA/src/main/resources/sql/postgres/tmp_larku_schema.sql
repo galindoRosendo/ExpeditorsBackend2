@@ -6,7 +6,7 @@ drop table if exists student;
 
 drop sequence if exists scheduledclass_id_seq;
 drop sequence if exists course_id_seq;
-drop sequence if exists phonenumber_id_seq;
+drop sequence if exists phonenumber_p_id_seq;
 drop sequence if exists student_id_seq;
 
 create table public.course
@@ -52,26 +52,26 @@ alter table public.student
 
 create table public.phonenumber
 (
-    id         serial
+    p_id        serial
         constraint phonenumber_pk
             primary key,
-    type       varchar(20),
-    number     varchar(50),
-    student_id integer
+    number      varchar(50) not null,
+    type        varchar(20),
+    student_id  integer
         constraint phonenumber_student_id_fk
             references public.student
 );
 
-
 alter table public.phonenumber
     owner to larku;
+
 
 create table public.student_scheduledclass
 (
     students_id integer
         constraint student_scheduledclass_student_id_fk
             references public.student,
-    classes_id   integer
+    classes_id  integer
         constraint student_scheduledclass_scheduledclass_id_fk
             references public.scheduledclass,
     constraint student_scheduledclass_pk

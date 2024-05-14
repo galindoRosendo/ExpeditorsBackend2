@@ -15,6 +15,9 @@ public class ClassRepoTest {
    @Autowired
    private ClassRepo classRepo;
 
+   @Autowired
+   private CourseRepo courseRepo;
+
    @Test
    public void testFindAll() {
       List<ScheduledClass>  result = classRepo.findAll();
@@ -26,6 +29,14 @@ public class ClassRepoTest {
    @Test
    public void testFindAllWithCourse() {
       List<ScheduledClass>  result = classRepo.findAllWithCourse();
+
+      out.println("result: " + result.size());
+      result.forEach(out::println);
+   }
+
+   @Test
+   public void testFindAllWithCourseNatively() {
+      List<ScheduledClass>  result = classRepo.findAllWithCourseNatively();
 
       out.println("result: " + result.size());
       result.forEach(out::println);
