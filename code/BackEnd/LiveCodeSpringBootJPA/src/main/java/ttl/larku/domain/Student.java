@@ -5,10 +5,11 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Transient;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +23,6 @@ public class Student {
       PART_TIME,
       HIBERNATING
    }
-
-   ;
 
    private int id;
 
@@ -39,8 +38,10 @@ public class Student {
    @JsonSerialize(using = LocalDateSerializer.class)
    private LocalDate dob;
 
+   @Enumerated(EnumType.STRING)
    private Status status = Status.FULL_TIME;
 
+   @Transient
    private List<ScheduledClass> classes = new ArrayList<>();
 
    private static int nextId = 0;

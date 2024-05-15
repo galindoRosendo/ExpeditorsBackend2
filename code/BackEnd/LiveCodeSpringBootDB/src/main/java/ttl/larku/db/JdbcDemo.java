@@ -20,7 +20,8 @@ public class JdbcDemo {
       String pw = "larku";
 
       try(Connection connection = DriverManager.getConnection(url, user, pw)) {
-         addCourses(connection);
+//         addCourses(connection);
+         dumpCourses(connection);
       } catch (SQLException e) {
          throw new RuntimeException(e);
       }
@@ -53,7 +54,7 @@ public class JdbcDemo {
       System.out.println("rowsAffected: " + rowsAffected + ", newKeys: " + newKeys);
    }
 
-   public void dumpCourses(Connection connection) {
+   public static void dumpCourses(Connection connection) {
       String sql = "select * from Course";
       try (PreparedStatement statement = connection.prepareStatement(sql);
            ResultSet resultSet = statement.executeQuery()

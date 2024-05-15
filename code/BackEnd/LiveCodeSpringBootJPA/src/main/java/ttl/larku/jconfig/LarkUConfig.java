@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import ttl.larku.dao.BaseDAO;
@@ -152,12 +151,4 @@ public class LarkUConfig {
       return new LocalValidatorFactoryBean();
    }
 
-   @Bean
-   public DataSource dataSource() {
-      String url = "jdbc:postgresql://localhost:5433/larku";
-      String user = "larku";
-      String pw = "larku";
-      DriverManagerDataSource dataSource = new DriverManagerDataSource(url, user, pw);
-      return dataSource;
-   }
 }

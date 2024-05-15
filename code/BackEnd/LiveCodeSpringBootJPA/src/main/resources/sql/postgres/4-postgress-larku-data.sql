@@ -11,6 +11,9 @@ alter sequence scheduledclass_id_seq restart;
 delete from course;
 alter sequence course_id_seq restart;
 
+delete from phonenumber;
+alter sequence phonenumber_p_id_seq restart;
+
 delete from student;
 alter sequence student_id_seq restart;
 
