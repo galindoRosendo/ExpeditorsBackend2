@@ -31,9 +31,6 @@ public class Student {
       HIBERNATING
    }
 
-   ;
-
-
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private int id;
@@ -53,7 +50,7 @@ public class Student {
    // table.  You would this approach if you really really really don't
    // want to have a Student reference in PhoneNumber.
    @JoinColumn(name = "student_id")
-   //@JoinTable will generate even more unnecesary SQL.
+   //@JoinTable will generate even more unnecessary SQL.
 //   @JoinTable
 //         (
 //               name="student_phones",
@@ -142,7 +139,7 @@ public class Student {
       if (phoneNumbers.isEmpty()) {
          addPhoneNumber(new PhoneNumber(phoneNumber));
       } else {
-        this.phoneNumbers.set(0, new PhoneNumber(phoneNumber));
+         this.phoneNumbers.set(0, new PhoneNumber(phoneNumber));
 //         this.phoneNumbers.add(new PhoneNumber(phoneNumber));
       }
    }
