@@ -1,4 +1,4 @@
-package ttl.larku;
+package ttl.larku.jconfig;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
