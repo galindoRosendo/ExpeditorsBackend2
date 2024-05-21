@@ -1,9 +1,11 @@
 package com.expeditors.adoptionapp.domain;
 
 import com.expeditors.adoptionapp.enums.TypesOfPets;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
-
+@Entity
 public class Pet {
     public Pet(LocalDate date, TypesOfPets.enumTypesOfPets typeOfPet, String name, String breedOfPet){
         this.dateOfAdoption = LocalDate.now();
@@ -14,10 +16,25 @@ public class Pet {
     public Pet(){
 
     }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id_pet;
     private LocalDate dateOfAdoption;
     private TypesOfPets.enumTypesOfPets typeOfPet;
     private String name;
     private String breed;
+    @ManyToOne
+    @JoinColumn(name = "id_adopter")
+    @JsonIgnore
+    private Adopter adopter;
+
+    public Adopter getAdopter() {
+        return adopter;
+    }
+
+    public void setAdopter(Adopter adopter) {
+        this.adopter = adopter;
+    }
 
     public LocalDate getDateOfAdoption() {
         return dateOfAdoption;

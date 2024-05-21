@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Configuration;
 import com.expeditors.adoptionapp.dao.AdopterDAO;
 import com.expeditors.adoptionapp.dao.inmemory.InMemoryAdopterDAO;
 import com.expeditors.adoptionapp.service.AdopterService;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
+import javax.sql.DataSource;
 
 @Configuration
 //@ComponentScan({"ttl.expeditors.backend.service", "ttl.expeditors.backend.dao"})
@@ -18,12 +21,13 @@ public class AdopterAppConfig {
         return dao;
     }
 
-    @Bean
-    public AdopterService adopterService(){
-        AdopterService service = new AdopterService();
+//    @Bean
+//    public DataSource dataSource() {
+//        String url = "jdbc:postgresql://localhost:5433/larku";
+//        String user = "larku";
+//        String pw = System.getenv("DB_PASSWORD");
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource(url, user, pw);
+//        return dataSource;
+//    }
 
-        AdopterDAO dao = adopterDAO();
-        service.setAdopterDAO(dao);
-        return service;
-    }
 }

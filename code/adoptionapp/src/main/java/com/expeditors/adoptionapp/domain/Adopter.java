@@ -1,31 +1,39 @@
 package com.expeditors.adoptionapp.domain;
 
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
 public class Adopter {
-    public Adopter(Integer id, String name, String phone, Pet pet){
-        this.id = id;
+    public Adopter(Integer id_adopter, String name, String phone, List<Pet> pets){
+        this.id_adopter = id_adopter;
         this.name = name;
         this.phone = phone;
-        this.pet = pet;
+        this.pets = pets;
     }
     public Adopter(){
 
     }
     //region Variables
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id_adopter;
     private String name;
     private String phone;
-    private Pet pet;
+    @OneToMany(mappedBy = "adopter", cascade = CascadeType.ALL)
+    private List<Pet> pets;
     //endregion
     //region Getters & Setters
     public Integer getId() {
-        return id;
+        return id_adopter;
     }
 
-    public void setId(Integer id) {
-        if(id == null) {
-            id = 0;
+    public void setId(Integer id_adopter) {
+        if(id_adopter == null) {
+            id_adopter = 0;
         }
-        this.id = id;
+        this.id_adopter = id_adopter;
     }
 
     public String getName() {
@@ -50,12 +58,12 @@ public class Adopter {
 
         this.phone = phone;
     }
-    public Pet getPet() {
-        return pet;
+    public List<Pet> getPets() {
+        return pets;
     }
 
-    public void setPet(Pet pet) {
-        this.pet = pet;
+    public void setPets(List<Pet> pets) {
+        this.pets = pets;
     }
     //endregion
 }

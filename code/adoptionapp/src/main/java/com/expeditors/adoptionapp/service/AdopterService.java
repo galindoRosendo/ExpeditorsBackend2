@@ -1,49 +1,40 @@
 package com.expeditors.adoptionapp.service;
 
+import com.expeditors.adoptionapp.dao.jpa.AdopterRepository;
+import com.expeditors.adoptionapp.dao.jpa.PetRepository;
 import com.expeditors.adoptionapp.domain.Adopter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.expeditors.adoptionapp.dao.AdopterDAO;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdopterService {
     @Autowired
-    private AdopterDAO adopterDAO;
+    private AdopterRepository adopterRepository;
+    @Autowired
+    private PetRepository petRepository;
 
     public Adopter addAdopter(Adopter adopter) {
-
-        Adopter insertedAdopter = adopterDAO.insert(adopter);
-
-        return insertedAdopter;
+        adopter.getPets().forEach(p-> p.setAdopter(adopter));
+        adopterRepository.save(adopter);
+        return adopter;
     }
-
     public boolean deleteAdopter(int id) {
-        return adopterDAO.delete(id);
+        adopterRepository.deleteById(id);
+        return true;
     }
-
     public boolean updateAdopter(Adopter adopter){
-        return adopterDAO.update(adopter);
+        adopterRepository.save(adopter);
+        return true;
     }
-
-    public Adopter findBy(int id){
-        return adopterDAO.findBy(id);
+    public Optional<Adopter> findBy(int id){
+        Optional<Adopter> adopter = adopterRepository.findById(id);
+        return adopter;
     }
-
-    public Adopter findBy(String name){
-        return adopterDAO.findBy(name);
-    }
-
     public List<Adopter> getAllAdopters() {
-        return adopterDAO.findAll();
-    }
-
-    public List<Adopter> sortByNaturalOrder() {
-        return adopterDAO.sortByNaturalOrder();
-    }
-
-    public void setAdopterDAO(AdopterDAO adopterDAO){
-        this.adopterDAO = adopterDAO;
+        return adopterRepository.findAll();
     }
 }

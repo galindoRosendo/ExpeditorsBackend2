@@ -10,6 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/adopter")
@@ -25,9 +26,9 @@ public class AdopterController {
 
     @GetMapping("/{abc}")
     public ResponseEntity<?> getAdopter(@PathVariable("abc") int id) {
-        Adopter adopter = adopterService.findBy(id);
-        if (adopter == null) {
-            return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).body("No adopter with id: " + id);
+        Optional<Adopter> adopter = adopterService.findBy(id);
+        if (adopter.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No adopter with id: " + id);
         }
         return ResponseEntity.ok(adopter);
     }
@@ -52,7 +53,7 @@ public class AdopterController {
     public ResponseEntity<?> deleteAdopter(@PathVariable("id") int id) {
         boolean result = adopterService.deleteAdopter(id);
         if(!result) {
-            return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).body("No adopter with id: " + id);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No adopter with id: " + id);
         }
 
         return ResponseEntity.noContent().build();
@@ -62,7 +63,7 @@ public class AdopterController {
     public ResponseEntity<?> updateAdopter(@RequestBody Adopter adopter) {
         boolean result = adopterService.updateAdopter(adopter);
         if(!result) {
-            return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT)
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("No adopter with id: " + adopter.getId());
         }
 

@@ -41,11 +41,11 @@ class MyRunner implements CommandLineRunner {
 //		System.out.println(adopter1.getName());
 //		System.out.println(adopter2.getName());
 
-		Pet noha = new Pet(LocalDate.now(), TypesOfPets.enumTypesOfPets.Dog, "sue", "chihuahua");
-		Adopter adopter1 = new Adopter(5,"Adriana", "8672223344", noha);
-		adopterService.addAdopter(adopter1);
+//		Pet noha = new Pet(LocalDate.now(), TypesOfPets.enumTypesOfPets.Dog, "sue", "chihuahua");
+//		Adopter adopter1 = new Adopter(5,"Adriana", "8672223344", noha);
+//		adopterService.addAdopter(adopter1);
 
-		List<Adopter> adopters = adopterService.getAllAdopters();
-		Adopter adopter = adopterService.findBy(1);
+//		List<Adopter> adopters = adopterService.getAllAdopters();
+//		Adopter adopter = adopterService.findBy(1);
 	}
 }

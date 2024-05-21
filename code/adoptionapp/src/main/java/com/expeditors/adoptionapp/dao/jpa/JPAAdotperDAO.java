@@ -35,9 +35,9 @@ public class JPAAdotperDAO implements AdopterDAO {
 
         long id = insertMultiple(adopter);
 
-        if (adopter.getPet() != null) {
+        if (adopter.getPets() != null) {
             String sqlPet = "insert into pet (date_of_adoption, type_of_pet, name, breed, id_adopter) values (?, ?, ?, ?, ?);";
-            Object [] arrPet = new Object[]{LocalDate.now(), 1, adopter.getPet().getName(), adopter.getPet().getBreed(), id};
+            Object [] arrPet = new Object[]{LocalDate.now(), 1, adopter.getPets().getFirst().getName(), adopter.getPets().getFirst().getBreed(), id};
             params.add(arrPet);
             jdbcClient.update(sqlPet, arrPet);
         }
@@ -115,7 +115,7 @@ public class JPAAdotperDAO implements AdopterDAO {
             newObj.setId(id_adopter);
             newObj.setName(name);
             newObj.setPhone(phone);
-            newObj.setPet(newPet);
+            //newObj.setPets(newPet);
             return newObj;
         };
 

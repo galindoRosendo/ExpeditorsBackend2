@@ -22,8 +22,8 @@ public class Application {
 
         Pet nina = new Pet(LocalDate.now(), TypesOfPets.enumTypesOfPets.Cat, "nina", "Aria");
         Pet noha = new Pet(LocalDate.now(), TypesOfPets.enumTypesOfPets.Dog, "noha", "Rotweiler & Chow chow");
-        Adopter adopter1 = new Adopter(1, "Rosendo", "8671413415", noha);
-        Adopter adopter2 = new Adopter(1, "Deyanira", "8672455575", nina);
+        Adopter adopter1 = new Adopter(1, "Rosendo", "8671413415", null);
+        Adopter adopter2 = new Adopter(1, "Deyanira", "8672455575", null);
 
         List<Adopter> adopters = List.of(adopter1, adopter2);
 
@@ -79,9 +79,9 @@ public class Application {
         System.out.println("The id is: " + adopterCaptured.getId());
         System.out.println("The name is: " + adopterCaptured.getName());
         System.out.println("The phone  is: " + adopterCaptured.getPhone());
-        System.out.println("The date of adoption is: " + adopterCaptured.getPet().getDateOfAdoption());
-        System.out.println("The type of adopted pet is: " + adopterCaptured.getPet().getTypeOfPet());
-        System.out.println("The name of adopted pet is: " + adopterCaptured.getPet().getName());
-        System.out.println("The breed of adopted pet is: " + adopterCaptured.getPet().getBreed());
+//        System.out.println("The date of adoption is: " + adopterCaptured.getPet().getDateOfAdoption());
+//        System.out.println("The type of adopted pet is: " + adopterCaptured.getPet().getTypeOfPet());
+//        System.out.println("The name of adopted pet is: " + adopterCaptured.getPet().getName());
+//        System.out.println("The breed of adopted pet is: " + adopterCaptured.getPet().getBreed());
     }
 }
