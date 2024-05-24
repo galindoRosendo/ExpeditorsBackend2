@@ -1,4 +1,4 @@
-package ttl.larku;
+package ttl.larku.jconfig;
 
 import ttl.larku.dao.BaseDAO;
 import ttl.larku.dao.inmemory.InMemoryClassDAO;
