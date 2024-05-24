@@ -19,6 +19,15 @@ public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_pet;
+
+    public Integer getId_pet() {
+        return id_pet;
+    }
+
+    public void setId_pet(Integer id_pet) {
+        this.id_pet = id_pet;
+    }
+
     private LocalDate dateOfAdoption;
     private TypesOfPets.enumTypesOfPets typeOfPet;
     private String name;
