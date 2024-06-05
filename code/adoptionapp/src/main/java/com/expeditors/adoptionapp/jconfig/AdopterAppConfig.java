@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import com.expeditors.adoptionapp.dao.AdopterDAO;
 import com.expeditors.adoptionapp.dao.inmemory.InMemoryAdopterDAO;
 import com.expeditors.adoptionapp.service.AdopterService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
@@ -16,6 +17,7 @@ import javax.sql.DataSource;
 @ComponentScan({"com.expeditors.adoptionapp"})
 public class AdopterAppConfig {
     @Bean
+    @Profile("dev")
     public AdopterDAO adopterDAO(){
         AdopterDAO dao = new JPAAdotperDAO();
         return dao;
